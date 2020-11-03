@@ -11,7 +11,7 @@ import {
 
 const ListItem: React.FC = () => {
   return (
-    <Grid item xs={4}>
+    <Grid item xs={3}>
       <Card>
         <CardActionArea>
           <CardMedia
