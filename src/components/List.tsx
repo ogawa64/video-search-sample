@@ -17,9 +17,6 @@ const List: React.FC = () => {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
       </Grid>
     </div>
   );
