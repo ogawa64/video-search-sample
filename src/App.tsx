@@ -4,23 +4,22 @@ import "./App.css";
 import TextInput from "components/TextInput";
 import List from "components/List"
 
-export interface InitialState {
+export type State = {
   query: string;
 }
 
-export interface Action {
+export type Action = {
   type: string,
   payload: {
     query: string
   }
 }
 
-export const initialState: InitialState = {
-  query: "default",
+const initialState = {
+  query: "",
 };
 
-export const reducer = (state: InitialState, action: Action) => {
-  console.log("dispatched ", action.type);
+const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case "UPDATE_QUERY":
       return {
@@ -28,18 +27,18 @@ export const reducer = (state: InitialState, action: Action) => {
         query: action.payload.query
       }
     default:
-      console.log(action.payload.query);
       return {
         ...state
       }
   }
 }
 
-export const AppContext = React.createContext(initialState);
+export const AppContext = React.createContext({} as { state: State, dispatch: React.Dispatch<Action> });
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <AppContext.Provider value={initialState}>
+    <AppContext.Provider value={{ state, dispatch }}>
       <div className="App">
         <h1>動画検索DEMO</h1>
         <TextInput />

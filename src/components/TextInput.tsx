@@ -1,11 +1,11 @@
-import React, { useState, useContext, useReducer } from "react";
-import { initialState, reducer } from "App";
+import React, { useState, useContext } from "react";
+import { AppContext } from "App";
 
 import { TextField } from "@material-ui/core";
 
 const TextInput: React.FC = () => {
   const [searchQuery, setQuery] = useState("");
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, dispatch } = useContext(AppContext);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch({
@@ -26,8 +26,7 @@ const TextInput: React.FC = () => {
         variant="standard"
         onChange={handleChangeInput}
       />
-      <p>TextInput: {state.query}</p>
-      <p>{searchQuery}</p>
+      <p>state : {state.query}</p>
     </form>
   );
 };
